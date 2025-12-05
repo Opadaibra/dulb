@@ -1,0 +1,28 @@
+<div class="div-form-control" [ngClass]="customClass">
+    <div class="row">
+      <div [ngClass]="isFlexed ? 'col-md-6' : ''">
+        <label *ngIf="labelTitle">
+          <span [title]="labelTitle">{{ labelTitle }}</span>
+        </label>
+      </div>
+      <div [ngClass]="isFlexed ? 'col-md-6' : ''">
+        <input
+          class="input-form"
+          [type]="type"
+          [placeholder]="placeholder"
+          [disabled]="disabled"
+          [min]="min"
+          [max]="maxValue"
+          [value]="withNgModel ? inputValue : inputControl?.value"
+          (input)="handleInput($event)"
+        />
+      </div>
+      <div class="error-messages">
+        <span *ngIf="inputControl?.hasError('required')">الحقل مطلوب</span>
+        <span *ngIf="inputControl?.hasError('min')">القيمة يجب ألا تقل عن {{ inputControl?.getError('min')?.min }}</span>
+        <span *ngIf="inputControl?.hasError('max')">القيمة يجب ألا تزيد عن {{ inputControl?.getError('max')?.max }}</span>
+        <span *ngIf="inputControl?.hasError('pattern')">شكل الحقل غير صحيح</span>
+      </div>
+    </div>
+  </div>
+  

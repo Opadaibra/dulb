@@ -1,0 +1,45 @@
+ <div class="table-wrapper" *ngIf="!loading && !error">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th *ngFor="let col of columns">{{ col.header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+              <td *ngFor="let col of columns">
+                
+                <!-- إذا حقل صورة -->
+                <img *ngIf="isImageField(col.field) && item[col.field]" [src]="item[col.field]" class="table-image">
+          
+                <!-- إذا حقل أكشن -->
+                <button *ngIf="isActionField(col.field)" (click)="triggerAction(item)" class="action-btn">
+                  👁️
+                </button>
+          
+                <!-- نص عادي -->
+                <span *ngIf="!isImageField(col.field) && !isActionField(col.field)">
+                  {{ item[col.field] }}
+                </span>
+          
+              </td>
+            </tr>
+          </tbody>
+          
+          
+      </table>
+    </div>
+
+    <div class="loader" *ngIf="loading">Loading...</div>
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <div class="pagination" *ngIf="!loading && !error">
+      <button [disabled]="currentPage === 1" (click)="previousPage()">◀ Prev</button>
+
+      <select [(ngModel)]="currentPage" (change)="goToPage()">
+        <option *ngFor="let page of pages" [value]="page">{{ page }}</option>
+      </select>
+
+      <button [disabled]="currentPage === totalPages" (click)="nextPage()">Next ▶</button>
+      <span class="page-info">Page {{ currentPage }} / {{ totalPages }}</span>
+    </div>

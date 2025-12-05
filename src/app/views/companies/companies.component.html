@@ -1,0 +1,27 @@
+<div class="companies-container">
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading">
+      ⏳ Loading companies...
+    </div>
+  
+    <div *ngIf="error" class="error">
+      ❌ Error: {{ error }}
+    </div>
+  
+    <button class="btn-add" (click)="addBook()">➕ Add Company</button>
+  
+    <ul class="company-list">
+      <li *ngFor="let company of items" class="company-item">
+        <span class="company-name">{{ company.name }} ({{ company.founded_year }})</span>
+        
+        <button class="btn-update" (click)="updateBook(company)">✏️ Update</button>
+        
+        <button class="btn-delete" (click)="deleteBook(company.id)">🗑️ Delete</button>
+      </li>
+    </ul>
+  
+    <div *ngIf="!loading && items.length === 0" class="no-data">
+      No companies found.
+    </div>
+  </div>
+  

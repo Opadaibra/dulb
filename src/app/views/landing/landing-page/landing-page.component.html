@@ -1,0 +1,252 @@
+<div class="landing" [dir]="dir">
+    <header class="navbar">
+      <div class="container header-container">
+        <div class="brand animate__animated animate__flipInY">
+          <img src="assets/images/logo.png" alt="DULB Company" class="logo">
+          DULB
+        </div>
+        <nav>
+          <ng-container *ngFor="let link of links; let i = index">
+            <a [href]="link.href" class="nav-link animate__animated animate__bounceIn" 
+               [style.animation-delay]="(i * 0.1) + 's'">
+              {{ link.label | translate }}
+            </a>
+          </ng-container>
+        </nav>
+        <div class="togglers">
+          <app-language-switcher></app-language-switcher>
+          <!-- <app-theme-toggle></app-theme-toggle> -->
+        </div>
+      </div>
+    </header>
+  
+    <section class="hero" id="home">
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+        <div class="bg-pattern"></div>
+      <div class="container hero-content">
+        <div class="hero-text" data-aos="fade-right">
+          <h1>{{ 'WELCOME_TO_DULB' | translate }}</h1>
+          <p>
+            {{ 'DULB_TRADING_CONTRACTING' | translate }}
+            {{ 'PIONEERING_LEADER' | translate }}
+          </p>
+          <div class="actions">
+            <a href="#contact" class="btn primary">{{ 'GET_IN_TOUCH_BUTTON' | translate }} <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#projects" class="btn outline">{{ 'OUR_PROJECTS_BUTTON' | translate }} <i class="fa-solid fa-toolbox"></i></a>
+          </div>
+        </div>
+        <div class="hero-image animate__animated animate__flipInY" data-aos="fade-left">
+          <img src="assets/images/dulb.jpg" alt="DULB Company" class="hero-img">
+        </div>
+      </div>
+    </section>
+  
+    <section class="about-section" id="about" style="padding: 4rem 0; background: var(--bg-color);">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>{{ 'OUR_STORY_MISSION' | translate }}</h2>
+          <p class="section-subtitle">{{ 'BUILDING_FUTURE' | translate }}</p>
+        </div>
+      </div>
+    </section>
+  
+    <section class="milestones-section" id="milestones">
+        <div class="container">
+          <div class="section-header" data-aos="fade-up">
+            <h2 >{{ 'LEGACY_MILESTONES' | translate }}</h2>
+            <p class="section-subtitle">{{ 'TRACK_RECORD' | translate }}</p>
+          </div>
+          
+          <div class="milestone-timeline">
+            <!-- الخط المتعرج الخلفي -->
+            <div class="timeline-wave">
+              <svg width="100%" height="100">
+                <path d="M0,50 Q100,0 200,50 T400,50 T600,50 T800,50" 
+                      fill="none" 
+                      stroke="var(--accent-color)" 
+                      stroke-width="2" 
+                      stroke-dasharray="5,5"
+                      opacity="0.3"/>
+              </svg>
+            </div>
+            
+            <!-- البطاقات المعلقة على الخط -->
+            <div class="milestone-cards-container">
+              <div class="milestone-wave-card" 
+                   *ngFor="let milestone of milestones; let i = index" 
+                   [style.animation-delay]="i * 0.2 + 's'"
+                   data-aos="fade-up">
+                
+                <div class="wave-card-inner">
+                  <!-- الدائرة العائمة مع الرقم -->
+                  <div class="floating-circle">
+                    <span class="circle-number">{{ milestone.number }}</span>
+                    <span class="circle-plus">{{ milestone.plus }}</span>
+                    <div class="circle-pulse"></div>
+                  </div>
+                  
+                  <!-- محتوى البطاقة -->
+                  <div class="wave-card-content">
+                    <h3>{{ milestone.title | translate }}</h3>
+                    <p>{{ milestone.description | translate }}</p>
+                    
+                    <!-- الموجة المعلقة -->
+                    <div class="card-wave">
+                      <svg width="100%" height="20">
+                        <path d="M0,10 Q20,0 40,10 T80,10 T120,10" 
+                              fill="none" 
+                              stroke="var(--accent-gradient)" 
+                              stroke-width="2"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+    <section class="values-section" id="values">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>{{ 'OUR_CORE_VALUES' | translate }}</h2>
+        </div>
+        
+        <div class="values-grid">
+          <div class="value-card" *ngFor="let value of coreValues" data-aos="fade-up">
+            <div class="value-icon">
+              <i class="fa-solid {{ value.icon }}"></i>
+            </div>
+            <h3>{{ value.title | translate }}</h3>
+            <p>{{ value.description | translate }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="projects-section" id="projects">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>{{ 'RECENT_PROJECTS' | translate }}</h2>
+          <p class="section-subtitle">{{ 'SHOWCASING_EXCELLENCE' | translate }}</p>
+        </div>
+        
+        <div class="projects-carousel" data-aos="fade-up">
+          <p-carousel 
+            [value]="recentProjects" 
+            [numVisible]="3" 
+            [numScroll]="1" 
+            [circular]="true" 
+            [hidden]="true"
+            [autoplayInterval]="3000"
+            [showNavigators]="false"
+            [showIndicators]="false"
+            [responsiveOptions]="responsiveOptions">
+            
+            <ng-template let-project pTemplate="item">
+              <div class="project-carousel-item">
+                <div class="project-image-container">
+                  <img [src]="project.image" [alt]="project.title | translate" class="project-carousel-image">
+                </div>
+                <div class="project-content p-4">
+                  <h3 class="project-title">{{ project.title | translate }}</h3>
+                  <p class="project-description">{{ project.description | translate }}</p>
+                 
+                </div>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+    </section>
+  
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-content" data-aos="fade-up">
+          <div class="contact-info">
+            <h2>{{ 'GET_IN_TOUCH' | translate }}</h2>
+            <p>{{ 'READY_TO_START' | translate }}</p>
+            
+            <div class="contact-details">
+              <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>+966 12 345 6789</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>info&#64;dulb.com</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>سوريا، دمشق</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form">
+            <form>
+              <div class="form-group">
+                <input type="text" [placeholder]="'YOUR_NAME' | translate" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="email" [placeholder]="'YOUR_EMAIL' | translate" class="form-control">
+              </div>
+              <div class="form-group">
+                <textarea [placeholder]="'YOUR_MESSAGE' | translate" rows="5" class="form-control"></textarea>
+              </div>
+              <button type="submit" class="btn primary">{{ 'SEND_MESSAGE' | translate }} <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <footer class="footer" id="footer" [dir]="'ltr'">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="brand">
+              <i class="fa-solid fa-building"></i> DULB
+            </div>
+            <p>{{ 'DELIVERING_EXCELLENCE' | translate }}</p>
+          </div>
+          
+          <div class="footer-links" >
+            <div class="footer-section" >
+              <h4>{{ 'QUICK_LINKS' | translate }}</h4>
+              <a href="#home">{{ 'HOME' | translate }}</a>
+              <a href="#about">{{ 'ABOUT' | translate }}</a>
+              <a href="#projects">{{ 'PROJECTS' | translate }}</a>
+              <a href="#contact">{{ 'CONTACT' | translate }}</a>
+            </div>
+            
+            <div class="footer-section">
+              <h4>{{ 'CORE_SERVICES' | translate }}</h4>
+              <a href="#">{{ 'MECHANICAL_SYSTEMS' | translate }}</a>
+              <a href="#">{{ 'ELECTRICAL_SOLUTIONS' | translate }}</a>
+              <a href="#">{{ 'PLUMBING_DRAINAGE' | translate }}</a>
+            </div>
+            
+            <div class="footer-section">
+              <h4>{{ 'RESOURCES' | translate }}</h4>
+              <a href="#">{{ 'CAREERS' | translate }}</a>
+              <a href="#">{{ 'CLIENT_TESTIMONIALS' | translate }}</a>
+              <a href="#">{{ 'FAQS' | translate }}</a>
+              <a href="#">{{ 'PRIVACY_POLICY' | translate }}</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2025 DULB Trading & Contracting Company. {{ 'ALL_RIGHTS_RESERVED' | translate }}</p>
+        </div>  
+        <!-- <div class="developer-credit">
+          {{ 'DEVELOPED_BY' | translate }} <a href="https://opadaibra.github.io/portfolio/" target="_blank">Obada Ibrahim</a>
+        </div> -->
+      </div>
+    </footer>
+  </div>

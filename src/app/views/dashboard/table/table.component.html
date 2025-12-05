@@ -1,0 +1,12 @@
+<app-paginated-table
+  [data]="items"
+  [columns]="columns"
+  [totalItems]="totalItems"
+  [pageSize]="pageSize"
+  [loading]="loading"
+  [error]="error"
+  (action)="triggerAction($event)"
+  (next)="loadPage($event)"
+  (prev)="loadPage($event)"
+  (goTo)="loadPage($event)">
+</app-paginated-table>

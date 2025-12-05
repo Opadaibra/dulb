@@ -1,0 +1,30 @@
+{
+  "APP_TITLE": "Angular Advanced Starter Template",
+  "APP_DESC": "A robust Angular foundation with API layering, role-based access, themes, and localization.",
+  "GET_STARTED": "Get Started",
+  "DOCS": "Documentation",
+  "CORE_FEATURES": "Core Features",
+  "READY_TO_BUILD": "Ready to build something awesome?",
+  "START_NOW": "Start Now",
+  "FOOTER_TEXT": "Abu Omar Angular Template. All rights reserved.",
+
+  "FEATURE_1_TITLE": "API Service Architecture",
+  "FEATURE_1_DESC": "Powerful layered API service that handles all CRUD operations with observables and error management.",
+  "FEATURE_1_POINT_1": "Generic API with minimal setup",
+  "FEATURE_1_POINT_2": "Extensible Base Service for any model",
+
+  "FEATURE_2_TITLE": "Role-Based Access Control",
+  "FEATURE_2_DESC": "Flexible permission system for routes and UI elements.",
+  "FEATURE_2_POINT_1": "Route and component-level guarding",
+  "FEATURE_2_POINT_2": "Centralized user permissions",
+
+  "FEATURE_3_TITLE": "Themes & Appearance",
+  "FEATURE_3_DESC": "Modern light and dark themes with animated transitions.",
+  "FEATURE_3_POINT_1": "CSS variable-based design",
+  "FEATURE_3_POINT_2": "Encrypted theme caching",
+
+  "FEATURE_4_TITLE": "Localization System",
+  "FEATURE_4_DESC": "Built-in multilingual support that detects and remembers your language.",
+  "FEATURE_4_POINT_1": "Easy JSON-based translations",
+  "FEATURE_4_POINT_2": "Automatic system language detection"
+}

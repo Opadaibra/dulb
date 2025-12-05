@@ -1,0 +1,22 @@
+<section class="login-section">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <app-input
+        labelTitle="Username"
+        placeholder="Enter your username"
+        [inputControl]="loginForm.get('username')">
+      </app-input>
+  
+      <app-input
+        labelTitle="Password"
+        placeholder="Enter your password"
+        type="password"
+        [inputControl]="loginForm.get('password')">
+      </app-input>
+  
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  
+    <p>Don't have an account? <a routerLink="/register">Sign Up</a></p>
+  </section>
+  
