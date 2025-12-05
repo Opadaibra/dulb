@@ -32,7 +32,7 @@ export class TranslateStateService {
 
   private async loadAvailableLangs() {
     try {
-      const res = await fetch('/public/i18n/langs.json');
+      const res = await fetch('/assets/i18n/langs.json');
       if (!res.ok) throw new Error('langs.json not found');
       this.availableLangsList = await res.json();
     } catch (err) {
@@ -53,7 +53,7 @@ export class TranslateStateService {
 
     if (!this.translations[lang]) {
       try {
-        const res = await fetch(`/public/i18n/${lang}.json`);
+        const res = await fetch(`/assets/i18n/${lang}.json`);
         if (!res.ok) throw new Error('Language file not found');
         this.translations[lang] = await res.json();
       } catch (err) {
