@@ -3,7 +3,7 @@
       <div class="container header-container">
         <div class="brand animate__animated animate__flipInY">
           <img src="assets/images/logo.png" alt="DULB Company" class="logo">
-          DULB
+            <span class="dulb-text"></span>
         </div>
         <nav>
           <ng-container *ngFor="let link of links; let i = index">
@@ -15,17 +15,13 @@
         </nav>
         <div class="togglers">
           <app-language-switcher></app-language-switcher>
-          <!-- <app-theme-toggle></app-theme-toggle> -->
+          <app-theme-toggle></app-theme-toggle>
         </div>
       </div>
     </header>
   
     <section class="hero" id="home">
-        <div class="corner-decoration top-left"></div>
-        <div class="corner-decoration top-right"></div>
-        <div class="corner-decoration bottom-left"></div>
-        <div class="corner-decoration bottom-right"></div>
-        <div class="bg-pattern"></div>
+        
       <div class="container hero-content">
         <div class="hero-text" data-aos="fade-right">
           <h1>{{ 'WELCOME_TO_DULB' | translate }}</h1>
@@ -145,7 +141,9 @@
             [autoplayInterval]="3000"
             [showNavigators]="false"
             [showIndicators]="false"
-            [responsiveOptions]="responsiveOptions">
+            [responsiveOptions]="responsiveOptions"
+            
+            >
             
             <ng-template let-project pTemplate="item">
               <div class="project-carousel-item">

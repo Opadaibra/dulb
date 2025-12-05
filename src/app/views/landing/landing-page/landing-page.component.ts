@@ -8,7 +8,7 @@ import { TranslateStateService } from '../../../core/services/translate-state.se
 
 @Component({
   selector: 'app-landing-page',
-  imports: [SharedModule, TranslatePipe, CarouselModule, LanguageSwitcherComponent],
+  imports: [SharedModule, TranslatePipe, CarouselModule, LanguageSwitcherComponent, ThemeToggleComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -36,7 +36,8 @@ export class LandingPageComponent {
     {
       breakpoint: '768px',
       numVisible: 1,
-      numScroll: 1
+      numScroll: 1,
+      touch: false
     },
     {
       breakpoint: '480px',
