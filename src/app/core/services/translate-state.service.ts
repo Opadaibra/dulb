@@ -32,7 +32,8 @@ export class TranslateStateService {
 
   private async loadAvailableLangs() {
     try {
-      const res = await fetch('/assets/i18n/langs.json');
+      // استخدام مسار نسبي مع إضافة timestamp لمنع cache
+      const res = await fetch(`assets/i18n/langs.json?t=${Date.now()}`);
       if (!res.ok) throw new Error('langs.json not found');
       this.availableLangsList = await res.json();
     } catch (err) {
@@ -53,12 +54,23 @@ export class TranslateStateService {
 
     if (!this.translations[lang]) {
       try {
-        const res = await fetch(`/assets/i18n/${lang}.json`);
-        if (!res.ok) throw new Error('Language file not found');
+        // استخدام مسار نسبي
+        const res = await fetch(`assets/i18n/${lang}.json?t=${Date.now()}`);
+        if (!res.ok) throw new Error(`Language file ${lang}.json not found`);
         this.translations[lang] = await res.json();
       } catch (err) {
         console.error(`Failed to load language ${lang}`, err);
-        this.translations[lang] = {};
+        // محاولة المسار المطلق كحل بديل
+        try {
+          const res2 = await fetch(`/assets/i18n/${lang}.json`);
+          if (res2.ok) {
+            this.translations[lang] = await res2.json();
+          } else {
+            throw new Error('Absolute path also failed');
+          }
+        } catch {
+          this.translations[lang] = {};
+        }
       }
     }
 
@@ -73,5 +85,12 @@ export class TranslateStateService {
   getTranslation(key: string): string {
     const dict = this.translations[this.currentLang] || {};
     return dict[key] || key;
+  }
+
+  // دالة مساعدة لإعادة تحميل الترجمة
+  async reloadTranslations() {
+    const currentLang = this.currentLang;
+    delete this.translations[currentLang];
+    await this.setLang(currentLang);
   }
 }
