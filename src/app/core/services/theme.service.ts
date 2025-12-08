@@ -93,7 +93,7 @@ export class ThemeService {
       '--text-color': '#333328',
       '--card-bg': '#ffffff',
       '--new-card-bg': '#ffffff',
-      '--footer-bg': '#c99344',
+      '--footer-bg': '#E1E1E1',
       '--hero-bg': '#fffbf5',
       '--border-color': '#ececec',
       '--primary-color-shadow': '#c9934440',
