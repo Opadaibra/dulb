@@ -105,14 +105,36 @@
       <div class="section-header" data-aos="fade-up">
         <h2>{{ 'OUR_CORE_VALUES' | translate }}</h2>
       </div>
-
-      <div class="values-grid">
-        <div class="value-card" *ngFor="let value of coreValues" data-aos="fade-up">
-          <div class="value-icon">
-            <i class="fa-solid {{ value.icon }}"></i>
+  
+      <!-- خطوات القيم المتصلة -->
+      <div class="values-timeline">
+        <div class="values-steps">
+          <!-- خط الاتصال الأفقي -->
+          <div class="connection-line"></div>
+  
+          <!-- كل قيمة كخطوة -->
+          <div class="value-step" *ngFor="let value of coreValues; let i = index" 
+               data-aos="fade-up" [attr.data-aos-delay]="i * 100">
+            
+            <!-- الدائرة مع الأيقونة -->
+            <div class="step-circle">
+              <div class="value-icon">
+                <i class="fa-solid {{ value.icon }}"></i>
+              </div>
+              <!-- نقطة اتصال للخط -->
+              <div class="connection-dot"></div>
+            </div>
+  
+            <!-- محتوى الخطوة -->
+            <div class="step-content">
+              <h3>{{ value.title | translate }}</h3>
+              <p>{{ value.description | translate }}</p>
+            </div>
+  
+            <!-- خطوط التوصيل العمودية -->
+            <div class="vertical-line top"></div>
+            <div class="vertical-line bottom"></div>
           </div>
-          <h3>{{ value.title | translate }}</h3>
-          <p>{{ value.description | translate }}</p>
         </div>
       </div>
     </div>
